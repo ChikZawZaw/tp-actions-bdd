@@ -1,6 +1,7 @@
 name: Database Check
 
-on: [push]
+on: 
+  push: 
 
 jobs:
   check-database:
@@ -10,7 +11,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Préparation de la db
-        uses: bash db/setup.sh
+        run: bash db/setup.sh
 
       - name: Afficher les étudiants
-        uses: PGPASSWORD=postgres psql -h localhost -U postgres -d tp -c "SELECT * FROM students;"
+        run: PGPASSWORD=postgres psql -h localhost -U postgres -d tp -c "SELECT * FROM students;"
